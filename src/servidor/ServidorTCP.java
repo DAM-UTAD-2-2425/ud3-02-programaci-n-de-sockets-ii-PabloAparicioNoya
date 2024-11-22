@@ -93,9 +93,12 @@ public class ServidorTCP {
 	 */
 	public String comprobarBoleto(String linea) {
 
+		// Hago un split de los numeros ya que vienen en formato string entre espacios y
+		// debo comprobarlos con un array de int
 		String[] vecString = linea.split(" ");
 		int[] numerosUsuario = new int[6];
 
+		// Los paso a enteros y los introduzco en el array que acabo de crear
 		for (int i = 0; i < vecString.length; i++) {
 			numerosUsuario[i] = Integer.parseInt(vecString[i]);
 		}
@@ -276,6 +279,7 @@ public class ServidorTCP {
 	 */
 	public void finSesion() {
 		try {
+			// Cierro los recursos utilizados
 			salida.close();
 			entrada.close();
 			socketCliente.close();
@@ -283,6 +287,7 @@ public class ServidorTCP {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		// Comunico al usuario que el servidor ha cerrado la conexion
 		System.out.println("-> Servidor Terminado");
 	}
 
